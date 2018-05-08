@@ -1,0 +1,22 @@
+{
+  "name": "hane",
+  "version": "0.0.1",
+  "description": "A federated SNS made with Node.js",
+  "main": "src/main.js",
+  "repository": "https://github.com/Dr-robin/hane.git",
+  "author": "Byulmaru Labs.",
+  "license": "CC-BY-SA-4.0",
+  "scripts": {
+    "dev": "tsc && node dist/main.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "js-yaml": "^3.11.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.11.1",
+    "@types/js-yaml": "^3.11.1",
+    "typescript": "^2.8.3"
+  }
+}
