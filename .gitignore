@@ -64,3 +64,6 @@ typings/
 
 # Typescript build output
 dist/
+
+# Temp file
+temp/

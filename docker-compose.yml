@@ -11,4 +11,4 @@ services:
       - POSTGRES_PASSWORD=isthisapassword
       - POSTGRES_INITDB_ARGS=--encoding=UTF-8
     ports:
-      - "5432:5432"
+      - '5432:5432'
