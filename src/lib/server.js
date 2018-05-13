@@ -3,13 +3,13 @@ import bodyParser from 'body-parser';
 import config from './config';
 import Auth from '../routes/auth';
 
-const app: Express.Application = Express();
+const app = Express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.use('/auth', Auth.expressConnector);
+app.use('/auth', Auth.expressRouter);
 
-const port: number = config.getValue('server.port', 8734);
+const port = config.getValue('server.port', 8734);
 app.listen(port);
 console.log(`Listening on port ${port}`);

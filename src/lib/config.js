@@ -13,10 +13,10 @@ catch(e) {
 }
 
 export default {
-    getValue(name: string, defaultValue?: any): any {
-        const argc: Array<string> = name.split('.');
-        let resultValue: any = config;
-        return argc.every((prop: string) => {
+    getValue(name, defaultValue = undefined) {
+        const argc = name.split('.');
+        let resultValue = config;
+        return argc.every((prop) => {
             resultValue = resultValue[prop];
             return resultValue !== undefined;
         }) ? resultValue : defaultValue;
