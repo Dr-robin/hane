@@ -1,27 +1,33 @@
-const db = require('../lib/db');
 const bcrypt = require('../lib/bcrypt');
 const Boom = require('boom');
+const Account = require('../models/account');
+const AccountEmail = require('../models/accountEmail');
+const Profile = require('../models/profile');
 const SessionService = require('./session');
 
 module.exports = {
 	async create(email, password, username) {
-		if(await db.get('account').findOne({email: {$in: [email]}})) {
+		if(await AccountEmail.findById(email)) {
 			throw Boom.badRequest('Email already registered');
 		}
-		else if(await db.get('profile').findOne({username: username, local: true})) {
+		else if(await Profile.findOne({where: {name: username, isLocal: true}})) {
 			throw Boom.badRequest('Username already registered');
 		}
-		let account = await db.get('account').insert({email: [email], password: await bcrypt.hash(password)});
-		await db.get('profile').insert({account: account._id, username: username, local: true});
+		let account = await Account.create({
+			accountEmails: [{email}],
+			profiles: [{name: username, isLocal: true}],
+			password: await bcrypt.hash(password)
+		}, {include: [AccountEmail, Profile]});
+		console.log(account);
 	},
 	async login(email, password) {
-		let account = await db.get('account').findOne({email: {$in: [email]}});
+		let account = await Account.findOne({include: [{model: AccountEmail, where: {email}}]});
 		if(!account) {
 			throw Boom.unauthorized('Invalid credentials');
 		}
 		if(!await bcrypt.compare(password, account.password)) {
 			throw Boom.unauthorized('Invalid credentials');
 		}
-		return await SessionService.create(account._id);
+		return await SessionService.create(account._id); //TODO 세션 서비스도 Postgre화시켜야 함
 	}
 };
