@@ -1,0 +1,14 @@
+version: '2.3'
+
+services:
+  db:
+    image: postgres:10.1-alpine
+    volumes:
+      - ./temp/pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=testdb
+      - POSTGRES_USER=rabbit
+      - POSTGRES_PASSWORD=isthisapassword
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8
+    ports:
+      - "5432:5432"
