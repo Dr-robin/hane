@@ -1,7 +1,7 @@
-import Express from 'express';
-import bodyParser from 'body-parser';
-import config from './config';
-import Auth from '../routes/auth';
+const Express = require('express');
+const bodyParser = require('body-parser');
+const config = require('./config');
+const Auth = require('../routes/auth');
 
 const app = Express();
 

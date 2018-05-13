@@ -1,4 +1,4 @@
-import RouteManager from '../lib/router';
+const RouteManager = require('../lib/router');
 
 const router = new RouteManager();
 router.add({
@@ -16,4 +16,4 @@ router.add({
     }
 });
 
-export default router;
+module.exports = router;

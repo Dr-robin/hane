@@ -1,6 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import yaml from 'js-yaml';
+const fs = require('fs');
+const path = require('path');
+const yaml = require('js-yaml');
 
 let config = {};
 
@@ -12,7 +12,7 @@ catch(e) {
     process.exit(e.errno);
 }
 
-export default {
+module.exports = {
     getValue(name, defaultValue = undefined) {
         const argc = name.split('.');
         let resultValue = config;
