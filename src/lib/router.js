@@ -14,6 +14,9 @@ class RouteManager {
 				if(e.isJoi) {   // Request arguments error
 					res.status(400).json({success: false, message: e.details[0].message})
 				}
+				else if(e.isBoom) {
+					res.status(e.output.statusCode).json({success: false, message: e.message});
+				}
 				else {
 					res.status(500).json({success: false, message: 'Unexcepted Error'});
 					console.error(e);
