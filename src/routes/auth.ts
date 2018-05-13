@@ -1,9 +1,12 @@
-import Express from 'express';
+import {RouteManager, HTTPMethod} from "../lib/router";
 
-const router: Express.Router = Express.Router();
-
-router.get('/sign-in', (req: Express.Request, res: Express.Response) => {
-    res.json({success: true});
+const router: RouteManager = new RouteManager();
+router.add({
+    url: '/sign-in',
+    method: HTTPMethod.GET,
+    async handler() {
+        return {success: true};
+    }
 });
 
 export default router;
