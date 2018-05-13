@@ -5,3 +5,4 @@ const conn = Monk(config.getValue('database.url'));
 conn.then(() => {
     console.log('Connected MongoDB Server');
 });
+export default conn;
