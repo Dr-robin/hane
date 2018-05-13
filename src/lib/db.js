@@ -1,8 +1,5 @@
-const Monk = require('monk');
+const sequelize = require('sequelize');
 const config = require('./config');
 
-const conn = Monk(config.getValue('database.url'));
-conn.then(() => {
-    console.log('Connected MongoDB Server');
-});
-module.exports = conn;
+const db = sequelize(config.getValue('database'));
+module.exports = db;

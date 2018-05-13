@@ -1,2 +1,6 @@
 database:
-  url: 'mongodb://localhost/test'
+  dialect: postgres
+  host: localhost
+  username: rabbit
+  password: isthisapassword
+  database: testdb
