@@ -6,8 +6,19 @@ class RouteManager {
 	}
 	add(r) {
 		async function wrapper(req, res) {
-			const result = await r.handler(req);
-			res.json(result);
+			try {
+				const result = await r.handler(req);
+				res.json(result);
+			}
+			catch(e) {
+				if(e.isJoi) {   // Request arguments error
+					res.status(400).json({success: false, message: e.details[0].message})
+				}
+				else {
+					res.status(500).json({success: false, message: 'Unexcepted Error'});
+					console.error(e);
+				}
+			}
 		}
 		switch(r.method.toUpperCase()) {
 			case 'GET':
