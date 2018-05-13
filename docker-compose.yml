@@ -1,7 +1,19 @@
 version: '2.3'
 
 services:
-  mongo:
-    image: 'mongo:3'
+  db:
+    image: postgres:10.1-alpine
+    volumes:
+      - ./temp/pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=testdb
+      - POSTGRES_USER=rabbit
+      - POSTGRES_PASSWORD=isthisapassword
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8
+    healthcheck:
+      test: "pg_isready -h localhost -p 5432 -q -U postgres"
+      interval: 3s
+      timeout: 1s
+      retries: 10
     ports:
-      - '27017:27017'
+      - "5432:5432"
