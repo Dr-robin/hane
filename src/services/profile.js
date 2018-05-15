@@ -5,8 +5,8 @@ module.exports = {
 	render(model) {
 		return {
 			id: model.id,
-			username: model.username,
-			acct: model.domain ? `${model.username}@${model.domain}` : model.username,
+			username: model.name,
+			acct: (model.domain ? `${model.name}@${model.domain}` : model.name),
 			display_name: model.displayName,
 			locked: model.locked,
 			created_at: model.createdAt,
