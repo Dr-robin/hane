@@ -10,6 +10,4 @@ const model = db.define('accountEmail', {
 
 Account.AccountEmail = Account.hasMany(model);
 
-model.sync();
-
 module.exports = model;

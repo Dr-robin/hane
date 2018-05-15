@@ -8,6 +8,4 @@ const model = db.define('account', {
 	timestamps: true, paranoid: true
 });
 
-model.sync();
-
 module.exports = model;

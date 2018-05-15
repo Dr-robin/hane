@@ -12,6 +12,5 @@ const model = db.define('profile', {
 
 Account.Profile = Account.hasMany(model);
 
-model.sync();
 
 module.exports = model;
