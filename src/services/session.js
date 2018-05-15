@@ -1,10 +1,8 @@
-const db = require('../lib/db');
-const uuid = require('uuid/v4');
+const Session = require('../models/session');
 
 module.exports = {
-	async create(accountID) {
-		let sessionID = uuid();
-		await db.get('session').insert({account: accountID, sessionID});
-		return sessionID;
+	async create(accountNo) {
+		let session = await Session.create({accountNo});
+		return session.id;
 	}
 };

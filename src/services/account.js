@@ -28,6 +28,6 @@ module.exports = {
 		if(!await bcrypt.compare(password, account.password)) {
 			throw Boom.unauthorized('Invalid credentials');
 		}
-		return await SessionService.create(account._id); //TODO 세션 서비스도 Postgre화시켜야 함
+		return await SessionService.create(account.no);
 	}
 };
