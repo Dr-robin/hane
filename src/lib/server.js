@@ -17,6 +17,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/auth', Auth.expressRouter);
+app.use('/api/v1', require('../routes/apiv1').expressRouter);
 
 const port = config.getValue('server.port', 8734);
 app.listen(port);
