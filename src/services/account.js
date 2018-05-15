@@ -29,6 +29,6 @@ module.exports = {
 		if(!await bcrypt.compare(password, account.password)) {
 			throw Boom.unauthorized('Invalid credentials');
 		}
-		return await SessionService.create(account.no);
+		return await SessionService.create(account.id);
 	}
 };
